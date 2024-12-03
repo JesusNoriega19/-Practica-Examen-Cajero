@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Cajero Automático</h1>
+
+  <!-- Mostrar mensaje de éxito o error -->
+  <div *ngIf="mensaje" class="alert" [ngClass]="{'alert-success': !mensaje.includes('error'), 'alert-danger': mensaje.includes('error')}">
+    {{ mensaje }}
+  </div>
+
+  <!-- Formulario de retiro -->
+  <div>
+    <label for="monto">Monto a Retirar:</label>
+    <input type="number" [(ngModel)]="monto" id="monto" />
+    <button (click)="realizarRetiro()">Realizar Retiro</button>
+  </div>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Cantidad</th>
+        <th>Denominación</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of saldo">
+        <td>{{ item.tipo }}</td>
+        <td>{{ item.cantidad }}</td>
+        <td>{{ item.denominacion | currency }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
